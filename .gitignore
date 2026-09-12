@@ -1,0 +1,15 @@
+# Sigasi
+.sigasi/
+project.sigasi
+
+# Vivado generated files
+simulator/
+.Xil/
+
+# Generated simulation artifacts
+waves/
+coverage_reports/
+
+# OS
+.DS_Store
+Thumbs.db
