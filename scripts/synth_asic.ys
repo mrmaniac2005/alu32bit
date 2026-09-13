@@ -1,0 +1,27 @@
+
+# Read RTL
+read_verilog -sv source/alu_isa_pkg.sv
+read_verilog -sv source/alu.sv
+
+# Select the top module
+hierarchy -top alu
+
+# Convert behavioral RTL
+proc
+opt
+
+# Additional optimizations
+fsm
+opt
+
+memory
+opt
+
+techmap
+opt
+
+# Statistics
+stat
+
+# Write synthesized netlist
+write_verilog synthesized/alu_netlist.v

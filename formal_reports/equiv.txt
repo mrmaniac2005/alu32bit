@@ -1,0 +1,327 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
+
+-- Executing script file `scripts/equiv.ys' --
+
+1. Executing Verilog-2005 frontend: source/alu_isa_pkg.sv
+Parsing SystemVerilog input from `source/alu_isa_pkg.sv' to AST representation.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: source/alu.sv
+Parsing SystemVerilog input from `source/alu.sv' to AST representation.
+Generating RTLIL representation for module `\alu'.
+Successfully finished Verilog frontend.
+Renaming module \alu to \rtl.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed 2 dead cases from process $proc$source/alu.sv:0$1 in module rtl.
+Marked 1 switch rules as full_case in process $proc$source/alu.sv:0$1 in module rtl.
+Removed a total of 2 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 7 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~1 debug messages>
+
+3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\rtl.$proc$source/alu.sv:0$1'.
+     1/5: $1\carry[0:0]
+     2/5: $1\result[31:0]
+     3/5: $1\overflow[0:0]
+     4/5: $1\sicomp[0:0]
+     5/5: $1\comp[0:0]
+
+3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\rtl.\result' from process `\rtl.$proc$source/alu.sv:0$1'.
+No latch inferred for signal `\rtl.\carry' from process `\rtl.$proc$source/alu.sv:0$1'.
+No latch inferred for signal `\rtl.\overflow' from process `\rtl.$proc$source/alu.sv:0$1'.
+No latch inferred for signal `\rtl.\zero' from process `\rtl.$proc$source/alu.sv:0$1'.
+No latch inferred for signal `\rtl.\negative' from process `\rtl.$proc$source/alu.sv:0$1'.
+No latch inferred for signal `\rtl.\comp' from process `\rtl.$proc$source/alu.sv:0$1'.
+No latch inferred for signal `\rtl.\sicomp' from process `\rtl.$proc$source/alu.sv:0$1'.
+
+3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\rtl.$proc$source/alu.sv:0$1'.
+Removing empty process `rtl.$proc$source/alu.sv:0$1'.
+Cleaned up 1 empty switch.
+
+3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rtl.
+<suppressed ~9 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rtl.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rtl'.
+<suppressed ~198 debug messages>
+Removed a total of 66 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rtl..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~5 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rtl.
+    New ctrl vector for $pmux cell $procmux$70: { $procmux$103_CMP $procmux$102_CMP $procmux$108_CMP $procmux$107_CMP $auto$opt_reduce.cc:137:opt_pmux$122 }
+    New ctrl vector for $pmux cell $procmux$87: { $procmux$111_CMP $procmux$110_CMP $procmux$109_CMP $auto$opt_reduce.cc:137:opt_pmux$124 }
+    New ctrl vector for $pmux cell $procmux$104: { $procmux$111_CMP $procmux$110_CMP $procmux$109_CMP $auto$opt_reduce.cc:137:opt_pmux$126 }
+    New ctrl vector for $pmux cell $procmux$36: { $procmux$103_CMP $procmux$102_CMP $procmux$108_CMP $procmux$107_CMP $auto$opt_reduce.cc:137:opt_pmux$128 }
+    New ctrl vector for $pmux cell $procmux$53: { $procmux$103_CMP $procmux$102_CMP $procmux$101_CMP $procmux$117_CMP $procmux$116_CMP $procmux$115_CMP $procmux$114_CMP $procmux$113_CMP $procmux$112_CMP $auto$opt_reduce.cc:137:opt_pmux$130 $procmux$108_CMP $procmux$107_CMP $procmux$106_CMP $procmux$105_CMP }
+  Optimizing cells in module \rtl.
+Performed a total of 5 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rtl'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rtl..
+Removed 0 unused cells and 89 unused wires.
+<suppressed ~1 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rtl.
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rtl..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~5 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rtl.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rtl'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rtl..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rtl.
+
+4.16. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing MEMORY pass.
+
+5.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+5.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+5.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+5.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+5.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+5.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rtl..
+
+5.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+5.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+5.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rtl..
+
+5.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+5.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+6. Executing OPT pass (performing simple optimizations).
+
+6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rtl.
+
+6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rtl'.
+Removed a total of 0 cells.
+
+6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \rtl..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~5 debug messages>
+
+6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \rtl.
+Performed a total of 0 changes.
+
+6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\rtl'.
+Removed a total of 0 cells.
+
+6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \rtl..
+
+6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module rtl.
+
+6.9. Finished OPT passes. (There is nothing left to do.)
+
+7. Executing Verilog-2005 frontend: synthesized/alu_netlist.v
+Parsing Verilog input from `synthesized/alu_netlist.v' to AST representation.
+Generating RTLIL representation for module `\alu_netlist'.
+Successfully finished Verilog frontend.
+Renaming module \alu_netlist to \gate.
+
+8. Executing EQUIV_MAKE pass (creating equiv checking module).
+Presumably equivalent wires: a_gold (\a_gold), a_gate (\a_gate) -> a
+Presumably equivalent wires: b_gold (\b_gold), b_gate (\b_gate) -> b
+Presumably equivalent wires: carry_gold (\carry_gold), carry_gate ($ternary$synthesized/alu_netlist.v:1538$707_Y_gate) -> carry
+Presumably equivalent wires: comp_gold (\comp_gold), comp_gate ($ternary$synthesized/alu_netlist.v:1573$742_Y_gate) -> comp
+Presumably equivalent wires: negative_gold (\result_gold [31]), negative_gate ($ternary$synthesized/alu_netlist.v:1570$739_Y_gate) -> negative
+Presumably equivalent wires: opcode_gold (\opcode_gold), opcode_gate (\opcode_gate) -> opcode
+Presumably equivalent wires: overflow_gold (\overflow_gold), overflow_gate ($ternary$synthesized/alu_netlist.v:1571$740_Y_gate) -> overflow
+Presumably equivalent wires: result_gold (\result_gold), result_gate ({ $ternary$synthesized/alu_netlist.v:1570$739_Y_gate $ternary$synthesized/alu_netlist.v:1569$738_Y_gate $ternary$synthesized/alu_netlist.v:1568$737_Y_gate $ternary$synthesized/alu_netlist.v:1567$736_Y_gate $ternary$synthesized/alu_netlist.v:1566$735_Y_gate $ternary$synthesized/alu_netlist.v:1565$734_Y_gate $ternary$synthesized/alu_netlist.v:1564$733_Y_gate $ternary$synthesized/alu_netlist.v:1563$732_Y_gate $ternary$synthesized/alu_netlist.v:1562$731_Y_gate $ternary$synthesized/alu_netlist.v:1561$730_Y_gate $ternary$synthesized/alu_netlist.v:1560$729_Y_gate $ternary$synthesized/alu_netlist.v:1559$728_Y_gate $ternary$synthesized/alu_netlist.v:1558$727_Y_gate $ternary$synthesized/alu_netlist.v:1557$726_Y_gate $ternary$synthesized/alu_netlist.v:1556$725_Y_gate $ternary$synthesized/alu_netlist.v:1555$724_Y_gate $ternary$synthesized/alu_netlist.v:1554$723_Y_gate $ternary$synthesized/alu_netlist.v:1553$722_Y_gate $ternary$synthesized/alu_netlist.v:1552$721_Y_gate $ternary$synthesized/alu_netlist.v:1551$720_Y_gate $ternary$synthesized/alu_netlist.v:1550$719_Y_gate $ternary$synthesized/alu_netlist.v:1549$718_Y_gate $ternary$synthesized/alu_netlist.v:1548$717_Y_gate $ternary$synthesized/alu_netlist.v:1547$716_Y_gate $ternary$synthesized/alu_netlist.v:1546$715_Y_gate $ternary$synthesized/alu_netlist.v:1545$714_Y_gate $ternary$synthesized/alu_netlist.v:1544$713_Y_gate $ternary$synthesized/alu_netlist.v:1543$712_Y_gate $ternary$synthesized/alu_netlist.v:1542$711_Y_gate $ternary$synthesized/alu_netlist.v:1541$710_Y_gate $ternary$synthesized/alu_netlist.v:1540$709_Y_gate $ternary$synthesized/alu_netlist.v:1539$708_Y_gate }) -> result
+Presumably equivalent wires: sicomp_gold (\sicomp_gold), sicomp_gate ($ternary$synthesized/alu_netlist.v:1572$741_Y_gate) -> sicomp
+Presumably equivalent wires: zero_gold (\zero_gold), zero_gate ($not$synthesized/alu_netlist.v:1520$689_Y_gate) -> zero
+Changing input B of cell $or$synthesized/alu_netlist.v:1502$671_gate ($or): $ternary$synthesized/alu_netlist.v:1570$739_Y_gate -> \result [31]
+Changing input A of cell $or$synthesized/alu_netlist.v:1502$671_gate ($or): $ternary$synthesized/alu_netlist.v:1569$738_Y_gate -> \result [30]
+Changing input B of cell $or$synthesized/alu_netlist.v:1501$670_gate ($or): $ternary$synthesized/alu_netlist.v:1568$737_Y_gate -> \result [29]
+Changing input A of cell $or$synthesized/alu_netlist.v:1501$670_gate ($or): $ternary$synthesized/alu_netlist.v:1567$736_Y_gate -> \result [28]
+Changing input B of cell $or$synthesized/alu_netlist.v:1500$669_gate ($or): $ternary$synthesized/alu_netlist.v:1566$735_Y_gate -> \result [27]
+Changing input A of cell $or$synthesized/alu_netlist.v:1500$669_gate ($or): $ternary$synthesized/alu_netlist.v:1565$734_Y_gate -> \result [26]
+Changing input B of cell $or$synthesized/alu_netlist.v:1499$668_gate ($or): $ternary$synthesized/alu_netlist.v:1564$733_Y_gate -> \result [25]
+Changing input A of cell $or$synthesized/alu_netlist.v:1499$668_gate ($or): $ternary$synthesized/alu_netlist.v:1563$732_Y_gate -> \result [24]
+Changing input B of cell $or$synthesized/alu_netlist.v:1498$667_gate ($or): $ternary$synthesized/alu_netlist.v:1562$731_Y_gate -> \result [23]
+Changing input A of cell $or$synthesized/alu_netlist.v:1498$667_gate ($or): $ternary$synthesized/alu_netlist.v:1561$730_Y_gate -> \result [22]
+Changing input B of cell $or$synthesized/alu_netlist.v:1497$666_gate ($or): $ternary$synthesized/alu_netlist.v:1560$729_Y_gate -> \result [21]
+Changing input A of cell $or$synthesized/alu_netlist.v:1497$666_gate ($or): $ternary$synthesized/alu_netlist.v:1559$728_Y_gate -> \result [20]
+Changing input B of cell $or$synthesized/alu_netlist.v:1496$665_gate ($or): $ternary$synthesized/alu_netlist.v:1558$727_Y_gate -> \result [19]
+Changing input A of cell $or$synthesized/alu_netlist.v:1496$665_gate ($or): $ternary$synthesized/alu_netlist.v:1557$726_Y_gate -> \result [18]
+Changing input B of cell $or$synthesized/alu_netlist.v:1495$664_gate ($or): $ternary$synthesized/alu_netlist.v:1556$725_Y_gate -> \result [17]
+Changing input A of cell $or$synthesized/alu_netlist.v:1495$664_gate ($or): $ternary$synthesized/alu_netlist.v:1555$724_Y_gate -> \result [16]
+Changing input B of cell $or$synthesized/alu_netlist.v:1494$663_gate ($or): $ternary$synthesized/alu_netlist.v:1554$723_Y_gate -> \result [15]
+Changing input A of cell $or$synthesized/alu_netlist.v:1494$663_gate ($or): $ternary$synthesized/alu_netlist.v:1553$722_Y_gate -> \result [14]
+Changing input B of cell $or$synthesized/alu_netlist.v:1493$662_gate ($or): $ternary$synthesized/alu_netlist.v:1552$721_Y_gate -> \result [13]
+Changing input A of cell $or$synthesized/alu_netlist.v:1493$662_gate ($or): $ternary$synthesized/alu_netlist.v:1551$720_Y_gate -> \result [12]
+Changing input B of cell $or$synthesized/alu_netlist.v:1492$661_gate ($or): $ternary$synthesized/alu_netlist.v:1550$719_Y_gate -> \result [11]
+Changing input A of cell $or$synthesized/alu_netlist.v:1492$661_gate ($or): $ternary$synthesized/alu_netlist.v:1549$718_Y_gate -> \result [10]
+Changing input B of cell $or$synthesized/alu_netlist.v:1491$660_gate ($or): $ternary$synthesized/alu_netlist.v:1548$717_Y_gate -> \result [9]
+Changing input A of cell $or$synthesized/alu_netlist.v:1491$660_gate ($or): $ternary$synthesized/alu_netlist.v:1547$716_Y_gate -> \result [8]
+Changing input B of cell $or$synthesized/alu_netlist.v:1490$659_gate ($or): $ternary$synthesized/alu_netlist.v:1546$715_Y_gate -> \result [7]
+Changing input A of cell $or$synthesized/alu_netlist.v:1490$659_gate ($or): $ternary$synthesized/alu_netlist.v:1545$714_Y_gate -> \result [6]
+Changing input B of cell $or$synthesized/alu_netlist.v:1489$658_gate ($or): $ternary$synthesized/alu_netlist.v:1544$713_Y_gate -> \result [5]
+Changing input A of cell $or$synthesized/alu_netlist.v:1489$658_gate ($or): $ternary$synthesized/alu_netlist.v:1543$712_Y_gate -> \result [4]
+Changing input B of cell $or$synthesized/alu_netlist.v:1488$657_gate ($or): $ternary$synthesized/alu_netlist.v:1542$711_Y_gate -> \result [3]
+Changing input A of cell $or$synthesized/alu_netlist.v:1488$657_gate ($or): $ternary$synthesized/alu_netlist.v:1541$710_Y_gate -> \result [2]
+Changing input B of cell $or$synthesized/alu_netlist.v:1487$656_gate ($or): $ternary$synthesized/alu_netlist.v:1540$709_Y_gate -> \result [1]
+Changing input A of cell $or$synthesized/alu_netlist.v:1487$656_gate ($or): $ternary$synthesized/alu_netlist.v:1539$708_Y_gate -> \result [0]
+Changing input A of cell $eq$source/alu.sv:79$35_gold ($logic_not): \result_gold -> \result
+
+9. Executing HIERARCHY pass (managing design hierarchy).
+
+9.1. Analyzing design hierarchy..
+Top module:  \equiv
+
+9.2. Analyzing design hierarchy..
+Top module:  \equiv
+Removing unused module `\gate'.
+Removing unused module `\rtl'.
+Removed 2 unused modules.
+
+10. Executing FLATTEN pass (flatten design).
+
+11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \equiv..
+Removed 0 unused cells and 1879 unused wires.
+<suppressed ~1 debug messages>
+
+12. Executing EQUIV_SIMPLE pass.
+Found 38 unproven $equiv cells (7 groups) in equiv:
+ Grouping SAT models for \result:
+  Trying to prove $equiv for \result [0]: success!
+  Trying to prove $equiv for \result [1]: success!
+  Trying to prove $equiv for \result [2]: success!
+  Trying to prove $equiv for \result [3]: success!
+  Trying to prove $equiv for \result [4]: success!
+  Trying to prove $equiv for \result [5]: success!
+  Trying to prove $equiv for \result [6]: success!
+  Trying to prove $equiv for \result [7]: success!
+  Trying to prove $equiv for \result [8]: success!
+  Trying to prove $equiv for \result [9]: success!
+  Trying to prove $equiv for \result [10]: success!
+  Trying to prove $equiv for \result [11]: success!
+  Trying to prove $equiv for \result [12]: success!
+  Trying to prove $equiv for \result [13]: success!
+  Trying to prove $equiv for \result [14]: success!
+  Trying to prove $equiv for \result [15]: success!
+  Trying to prove $equiv for \result [16]: success!
+  Trying to prove $equiv for \result [17]: success!
+  Trying to prove $equiv for \result [18]: success!
+  Trying to prove $equiv for \result [19]: success!
+  Trying to prove $equiv for \result [20]: success!
+  Trying to prove $equiv for \result [21]: success!
+  Trying to prove $equiv for \result [22]: success!
+  Trying to prove $equiv for \result [23]: success!
+  Trying to prove $equiv for \result [24]: success!
+  Trying to prove $equiv for \result [25]: success!
+  Trying to prove $equiv for \result [26]: success!
+  Trying to prove $equiv for \result [27]: success!
+  Trying to prove $equiv for \result [28]: success!
+  Trying to prove $equiv for \result [29]: success!
+  Trying to prove $equiv for \result [30]: success!
+  Trying to prove $equiv for \result [31]: success!
+  Trying to prove $equiv for \carry: success!
+  Trying to prove $equiv for \overflow: success!
+  Trying to prove $equiv for \zero: success!
+  Trying to prove $equiv for \negative: success!
+  Trying to prove $equiv for \comp: success!
+  Trying to prove $equiv for \sicomp: success!
+Proved 38 previously unproven $equiv cells.
+
+13. Executing EQUIV_STATUS pass.
+Found 38 $equiv cells in equiv:
+  Of those cells 38 are proven and 0 are unproven.
+  Equivalence successfully proven!
+
+End of script. Logfile hash: 02307142fa, CPU: user 0.46s system 0.06s, MEM: 50.34 MB peak
+Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
+Time spent: 49% 1x equiv_simple (0 sec), 25% 6x read_verilog (0 sec), ...

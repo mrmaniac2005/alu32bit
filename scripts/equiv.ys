@@ -1,0 +1,26 @@
+# Read RTL
+read_verilog -sv source/alu_isa_pkg.sv
+read_verilog -sv source/alu.sv
+rename alu rtl
+
+# Convert RTL processes
+proc
+opt
+memory
+opt
+
+# Read synthesized netlist
+read_verilog synthesized/alu_netlist.v
+rename alu_netlist gate
+
+# Build equivalence miter
+equiv_make rtl gate equiv
+
+# Prepare
+hierarchy -top equiv
+flatten
+opt_clean
+
+# Prove
+equiv_simple
+equiv_status -assert

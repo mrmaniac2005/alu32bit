@@ -30,6 +30,11 @@ foreach k [glob -nocomplain ./simulation/*] {
     puts "${YEL}added file: $k to simulation ${RST}"
 }
 
+foreach k [glob -nocomplain ./synthesized/*] {
+    add_files -fileset sim_1 $k
+    puts "${YEL}added file: $k to simulation ${RST}"
+}
+
 puts "${GRN}successfully added files to project: $project_name ${RST}"
 
 close_project

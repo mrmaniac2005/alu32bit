@@ -1,6 +1,6 @@
 import alu_isa_pkg::*;
 
-module alu_tb #(parameter int WIDTH = 16);
+module alu_tb #(parameter int WIDTH = 32);
     typedef struct packed {
         logic [WIDTH-1:0] a,b;
         alu_opcode_e opcode;
@@ -10,9 +10,7 @@ module alu_tb #(parameter int WIDTH = 16);
 
     io_set_t io_tb;
 
-    alu #(
-        .WIDTH(WIDTH)
-    ) alu_instance (
+    alu_netlist alu_instance (
         .a(io_tb.a),
         .b(io_tb.b),
         .opcode(io_tb.opcode),
